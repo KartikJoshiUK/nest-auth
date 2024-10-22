@@ -1,0 +1,12 @@
+# Get Users
+# GET http://localhost:3000/users
+
+# Create new User
+POST http://localhost:3000/users
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkthcnRpayIsInN1YiI6IjY3MTYyYmE1OGVhM2VjMjFiNDFkZDI0OCIsImVtYWlsIjoia0BnbWFpbC5jb20iLCJpYXQiOjE3Mjk1MDYyMTMsImV4cCI6MTcyOTUwNjI3M30.no2yItbYhZJQtnZ6IE5diny8k-3ZM14UIPYY-5Ra2zM
+
+{
+    "email" : "k@gmail.com",
+    "password" : "123"
+}
