@@ -32,7 +32,7 @@ export class AuthService {
     };
     const access_token = this.jwtService.sign(payload);
     const refresh_token = this.jwtService.sign(payload, {
-      expiresIn: '2m',
+      expiresIn: '7d',
     });
     await this.usersService.updateRefreshToken(user.id, refresh_token);
     return { access_token, refresh_token };

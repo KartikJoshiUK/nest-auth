@@ -3,19 +3,14 @@ import {
   Get,
   Post,
   Body,
-  Patch,
-  Param,
-  Delete,
   UseGuards,
   Request,
   Response,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
-import { LoginDto } from './dto/login.dto';
 import { SignupDto } from './dto/signup.dto';
 import { LocalAuthGuard } from './guard/local-auth.guard';
 import { Response as ExpressRes, Request as ExpressReq } from 'express';
-import { JwtAuthGuard } from 'src/guard/jwt-auth.guard';
 
 @Controller('auth')
 export class AuthController {
@@ -27,6 +22,8 @@ export class AuthController {
       req.user,
       res,
     );
+    console.log(access_token, refresh_token);
+
     // Set cookies
     res.cookie('access_token', access_token, {
       maxAge: 10 * 60 * 1000,
@@ -34,7 +31,7 @@ export class AuthController {
       httpOnly: true,
       // ? Read about this
       sameSite: 'lax',
-      // !!! TODO: on production this should be true
+      // ! TODO: on production this should be true
       // secure: true,
     });
     res.cookie('refresh_token', refresh_token, {
@@ -54,12 +51,5 @@ export class AuthController {
   ) {
     const user = await this.authService.signup({ username, email, password });
     return this.authService.login(user, res);
-  }
-
-  @Get('profile')
-  @UseGuards(JwtAuthGuard)
-  getProfile(@Request() req: ExpressReq) {
-    console.log(req.cookies);
-    return req.user;
   }
 }

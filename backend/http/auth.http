@@ -1,5 +1,5 @@
 # # Signup
-# POST http://localhost:3000/auth/signup
+# POST http://localhost:1000/auth/signup
 # Content-Type: application/json
 
 # {
@@ -10,7 +10,7 @@
 
 
 ##  Login
-POST http://localhost:3000/auth/login
+POST http://localhost:1000/auth/login
 Content-Type: application/json
 
 {

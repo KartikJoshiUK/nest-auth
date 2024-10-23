@@ -11,7 +11,11 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
         (request: Request) => {
           let token = null;
           if (request && request.cookies) {
-            token = request.cookies['access_token'];
+            const access_token = request.cookies['access_token'];
+            const refresh_token = request.cookies['refresh_token'];
+
+            if (access_token) token = access_token;
+            else if (refresh_token) token = refresh_token;
           }
           return token;
         },
@@ -22,6 +26,10 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
   }
 
   async validate(payload: any) {
-    return { userId: payload.sub, username: payload.username };
+    return {
+      userId: payload.sub,
+      username: payload.username,
+      email: payload.email,
+    };
   }
 }

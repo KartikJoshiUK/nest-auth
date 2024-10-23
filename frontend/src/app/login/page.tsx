@@ -2,14 +2,13 @@
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 
-type Props = {};
-
-export default function page({}: Props) {
+export default function page() {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
   const handleLogin = async (email: string, password: string) => {
-    const response = await fetch("http://localhost:3000/auth/login", {
+    const response = await fetch("http://localhost:1000/auth/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password }),
